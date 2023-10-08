@@ -3,6 +3,7 @@ package com.warehouse.service;
 import com.warehouse.entities.Product;
 import com.warehouse.entities.ProductCategory;
 import com.warehouse.entities.ProductRecord;
+import com.warehouseapi.service.WarehouseInterface;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -11,7 +12,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Warehouse {
+public class Warehouse implements WarehouseInterface {
 
     private CopyOnWriteArrayList<Product> storage = new CopyOnWriteArrayList<>();
 
