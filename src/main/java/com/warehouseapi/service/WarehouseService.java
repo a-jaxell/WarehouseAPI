@@ -6,6 +6,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 @ApplicationScoped
 public class WarehouseService implements WarehouseInterface{
@@ -13,6 +15,11 @@ public class WarehouseService implements WarehouseInterface{
     @Override
     public List<ProductRecord> getProducts() {
         return null;
+    }
+
+    @Override
+    public Optional<ProductRecord> getProduct(UUID id) {
+        return Optional.empty();
     }
 
     @Override
