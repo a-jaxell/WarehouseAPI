@@ -11,7 +11,7 @@
 #### 1- Concurrent Warehouse
     - Skapa interface emellan warehouseAPI och warehouse
     - modifiera warehouse så den använder sig av concurrent metoder
-        - CopyOnWriteArrayList för ArrayList
+        - X -CopyOnWriteArrayList för ArrayList
         - Eller skapa en WarehouseService som erbjuder metoder anpassade för concurrency
         - (Extra) Alternativt skapa en Threadpool för hantering av multipla requests
 
