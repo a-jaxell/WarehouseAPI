@@ -6,18 +6,19 @@ import com.warehouse.entities.ProductRecord;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Warehouse {
 
-    private ArrayList<Product> storage = new ArrayList<>();
+    private CopyOnWriteArrayList<Product> storage = new CopyOnWriteArrayList<>();
 
     public Warehouse() {
     }
 
-    public Warehouse(ArrayList<Product> storage) {
+    public Warehouse(CopyOnWriteArrayList<Product> storage) {
         this.storage = storage;
     }
 

@@ -3,12 +3,12 @@ package com.warehouse;
 import com.warehouse.entities.Product;
 import com.warehouse.entities.ProductCategory;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class FakeProducts {
 
-    public ArrayList<Product> fakeProducts = new ArrayList<>(Arrays.asList(
+    public CopyOnWriteArrayList<Product> fakeProducts = new CopyOnWriteArrayList<>(Arrays.asList(
             new Product("Microplane", ProductCategory.UTENSILS, 4),
             new Product("Global_20_cm", ProductCategory.CHEF_KNIVES, 2),
             new Product("Slickepott_L", ProductCategory.SPATULAS, 4),
@@ -21,7 +21,7 @@ public class FakeProducts {
             new Product("FingerSnipper4K", ProductCategory.MANDOLINS, 8)
     ));
 
-    public ArrayList<Product> list() {
+    public CopyOnWriteArrayList<Product> list() {
         return fakeProducts;
     }
 
