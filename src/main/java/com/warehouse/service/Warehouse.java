@@ -67,9 +67,15 @@ public class Warehouse {
     }
 
     private Optional<Product> findProduct(UUID id) {
-        return storage.stream()
-                .filter(product -> product.getId() == id)
+        Optional<Product> result = storage.stream()
+                .filter(product -> product.getId().equals(id))
                 .findFirst();
+        if (result.isPresent()){
+            return result;
+        } else {
+            return Optional.empty();
+        }
+
     }
 
     public List<ProductRecord> sortByName() {
