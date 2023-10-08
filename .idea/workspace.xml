@@ -10,12 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c36470c-6063-40e1-89d3-0da9c660eca1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/warehouse/FakeProducts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/warehouse/entities/ProductRecordTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/warehouse/entities/ProductTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/warehouse/service/WarehouseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/warehouse/service/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/warehouse/service/Warehouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/warehouse/FakeProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/warehouse/FakeProducts.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +70,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/warehouse" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.warehouse in WarehouseApi">
     <configuration name="JBoss/WildFly 29.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 29.0.1.Final" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="21">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/WarehouseApi-1.0-SNAPSHOT" />
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
@@ -145,6 +143,19 @@
         </option>
       </method>
     </configuration>
+    <configuration name="warehouse in WarehouseApi" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="WarehouseApi" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/com/warehouse" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.warehouse in WarehouseApi" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -160,7 +171,7 @@
       <workItem from="1696271023075" duration="1586000" />
       <workItem from="1696489597904" duration="850000" />
       <workItem from="1696507013951" duration="750000" />
-      <workItem from="1696774150237" duration="1523000" />
+      <workItem from="1696774150237" duration="2154000" />
     </task>
     <servers />
   </component>
