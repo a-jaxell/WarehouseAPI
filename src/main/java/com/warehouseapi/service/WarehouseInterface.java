@@ -1,5 +1,6 @@
 package com.warehouseapi.service;
 
+import com.warehouse.entities.Product;
 import com.warehouse.entities.ProductCategory;
 import com.warehouse.entities.ProductRecord;
 
@@ -12,4 +13,5 @@ public interface WarehouseInterface {
     List<ProductRecord> getProducts();
     Optional<ProductRecord> getProduct(UUID id);
     Map<ProductCategory, Long> getProductsPerCategory(String category);
+    ProductRecord addNewProduct(Product product);
 }

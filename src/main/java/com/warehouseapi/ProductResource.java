@@ -5,10 +5,7 @@ import com.warehouse.entities.ProductCategory;
 import com.warehouse.entities.ProductRecord;
 import com.warehouseapi.service.WarehouseService;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -59,4 +56,23 @@ public class ProductResource {
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
+    @POST
+    @Path("/add")
+    @Produces(MediaType.APPLICATION_JSON)
+    public  Response addNewProduct(@QueryParam("name") String name,
+                                   @QueryParam("productCategory") String productCategory,
+                                   @QueryParam("rating") int rating){
+            ProductRecord response;
+
+        try{
+            Product newProduct = new Product(name, Enum.valueOf(ProductCategory.class, productCategory.toUpperCase()), rating);
+            response = ProductRecord.returnRecord(newProduct);
+                    //warehouseService.addNewProduct(newProduct);
+
+        }catch (Exception e) {
+            return Response.serverError().entity("Error: "+ e).build();
+        }
+        return Response.ok(response, MediaType.APPLICATION_JSON).build();
+    }
+
 }

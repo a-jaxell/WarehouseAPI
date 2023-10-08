@@ -37,9 +37,10 @@ public class Warehouse implements WarehouseInterface {
         storage.add(productCopy);
     }
 
-    public void addNewProduct(Product product) {
+    public ProductRecord addNewProduct(Product product) {
         Product productCopy = new Product(product);
         storage.add(productCopy);
+        return ProductRecord.returnRecord(productCopy);
     }
 
     public Optional<ProductRecord> getProduct(UUID id) throws IllegalArgumentException {

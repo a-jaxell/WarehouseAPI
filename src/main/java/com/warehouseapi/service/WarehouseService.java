@@ -1,5 +1,6 @@
 package com.warehouseapi.service;
 
+import com.warehouse.entities.Product;
 import com.warehouse.entities.ProductCategory;
 import com.warehouse.entities.ProductRecord;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -24,6 +25,11 @@ public class WarehouseService implements WarehouseInterface{
 
     @Override
     public Map<ProductCategory, Long> getProductsPerCategory(String category) {
+        return null;
+    }
+
+    @Override
+    public ProductRecord addNewProduct(Product product) {
         return null;
     }
 }
