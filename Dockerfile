@@ -1,7 +1,7 @@
-FROM eclipse-temurin:20
+FROM eclipse-temurin:21-alpine
 LABEL authors="alvarjaxell"
 WORKDIR /app
-COPY target/WarehouseApi-1.0-SNAPSHOT.war .
+COPY ./target/WarehouseApi-1.0-SNAPSHOT.war .
 EXPOSE 8080
 ENTRYPOINT ["top", "-b"]
 
