@@ -31,7 +31,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: maven-artifact
-          path: target/maven-artifact
+          path: target/
       -
         name: Build and push
         uses: docker/build-push-action@v5
