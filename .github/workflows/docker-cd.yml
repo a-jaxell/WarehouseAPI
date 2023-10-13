@@ -27,6 +27,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: View the file system
+        run: ls -R
+      -
         name: Download Artifact
         uses: actions/download-artifact@v3
         with:
