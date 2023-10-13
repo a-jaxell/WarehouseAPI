@@ -35,8 +35,8 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: WarehouseApi-1.0-SNAPSHOT
-        path: target/
+        name: maven-artifact
+        path: target/*.war
 
 
 
