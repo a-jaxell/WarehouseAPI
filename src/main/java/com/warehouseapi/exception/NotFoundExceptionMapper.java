@@ -1,4 +1,4 @@
-package com.warehouseapi;
+package com.warehouseapi.exception;
 
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
