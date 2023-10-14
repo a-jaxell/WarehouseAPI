@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 
 @Interceptor
 @Priority(Interceptor.Priority.APPLICATION)
-@Logging
-public class LoggingInterceptor {
+@LogMethodCalls
+public class LogMethodCallsInterceptor {
 
-    Logger logger = LoggerFactory.getLogger(LoggingInterceptor.class);
+    Logger logger = LoggerFactory.getLogger(LogMethodCallsInterceptor.class);
 
     @AroundInvoke
     public Object logMethodEntry(InvocationContext context) throws Exception {

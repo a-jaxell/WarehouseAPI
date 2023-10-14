@@ -12,5 +12,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @InterceptorBinding
 @Target({TYPE, METHOD})
 @Retention(RUNTIME)
-public @interface Logging {
+public @interface LogMethodCalls {
 }
