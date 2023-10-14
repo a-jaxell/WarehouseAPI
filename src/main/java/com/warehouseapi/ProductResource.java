@@ -3,6 +3,7 @@ package com.warehouseapi;
 import com.warehouse.entities.Product;
 import com.warehouse.entities.ProductCategory;
 import com.warehouse.entities.ProductRecord;
+import com.warehouseapi.interceptor.Logging;
 import com.warehouseapi.service.WarehouseService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -18,6 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Path("/products")
+@Logging
 public class ProductResource {
     Product product = new Product("name", ProductCategory.UTENSILS, 2);
     private static final Logger logger = LoggerFactory.getLogger(ProductResource.class);
