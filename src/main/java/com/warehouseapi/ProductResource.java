@@ -69,10 +69,17 @@ public class ProductResource {
                 @QueryParam("rating") int rating){
 
         ProductRecord response;
-        if(name == null || name.equals("")){
+        if(name == null || name.isEmpty()){
             throw new BadRequestException(
                     Response.status(Response.Status.BAD_REQUEST)
                             .entity("name parameter is required")
+                            .build()
+            );
+        }
+        if(productCategory == null || productCategory.isEmpty()){
+            throw new BadRequestException(
+                    Response.status(Response.Status.BAD_REQUEST)
+                            .entity("productCategory is required ")
                             .build()
             );
         }
