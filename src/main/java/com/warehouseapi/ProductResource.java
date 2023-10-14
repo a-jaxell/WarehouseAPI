@@ -72,18 +72,18 @@ public class ProductResource {
 
         ProductRecord response;
         logger.info("Connection to : "+ uri.getAbsolutePath());
+        if(name == null || name.equals("")){
+            throw new WebApplicationException(
+                    Response.status(Response.Status.BAD_REQUEST)
+                            .entity("name parameter is required")
+                            .build()
+            );
+        }
 
         try{
             Product newProduct = new Product(name, Enum.valueOf(ProductCategory.class, productCategory.toUpperCase()), rating);
             response = ProductRecord.returnRecord(newProduct);
                     //warehouseService.addNewProduct(newProduct);
-            if(name == null) {
-                throw new WebApplicationException(
-                        Response.status(Response.Status.BAD_REQUEST)
-                                .entity("name parameter is required")
-                                .build()
-                );
-            }
         } catch (Exception e) {
             logger.error("Error: " + e);
             // This need to be fixed so that this either sends the exception status or
