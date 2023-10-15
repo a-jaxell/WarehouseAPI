@@ -1,4 +1,4 @@
-package com.warehouseapi;
+package com.warehouseapi.resource;
 
 import com.warehouse.entities.Product;
 import com.warehouse.entities.ProductCategory;
@@ -19,7 +19,6 @@ import java.util.UUID;
 @Path("/products")
 @LogMethodCalls
 public class ProductResource {
-    Product product = new Product("name", ProductCategory.UTENSILS, 2);
     private WarehouseService warehouseService;
     public ProductResource(){}
     @Inject
@@ -28,23 +27,24 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts() {
         List<ProductRecord> result;
-        try{
-            result = warehouseService.getProducts();
-        }catch (Exception e) {
-            return Response.serverError().entity("Error: "+ e).build();
+
+        result = warehouseService.getProducts();
+        if(result.isEmpty()){
+            throw new NotFoundException("No products available");
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
     @GET
-    @Path("/{category}")
+    @Path("/category/{category}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductsInCategory(@PathParam("category") String category) {
         List<ProductRecord> result;
-        try{
-            result = (List<ProductRecord>) warehouseService.getProductsPerCategory(category);
-        }catch (Exception e) {
-            return Response.serverError().entity("Error: "+ e).build();
+
+        result = (List<ProductRecord>) warehouseService.getProductsPerCategory(category);
+        if(result.isEmpty()){
+            throw new NotFoundException("Unable to find any matching products");
         }
+
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
     @GET
@@ -52,10 +52,9 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductFromId(@PathParam("id") String id) {
         Optional<ProductRecord> result;
-        try{
             result = warehouseService.getProduct(UUID.fromString(id));
-        }catch (Exception e) {
-            return Response.serverError().entity("Error: "+ e).build();
+        if(result.isEmpty()){
+            throw new NotFoundException("Did not find any matching products");
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
@@ -83,16 +82,14 @@ public class ProductResource {
                             .build()
             );
         }
-
+        Product newProduct = new Product(name, Enum.valueOf(ProductCategory.class, productCategory.toUpperCase()), rating);
+        response = ProductRecord.returnRecord(newProduct);
         try{
-            Product newProduct = new Product(name, Enum.valueOf(ProductCategory.class, productCategory.toUpperCase()), rating);
-            response = ProductRecord.returnRecord(newProduct);
-                    //warehouseService.addNewProduct(newProduct);
-        } catch (Exception e) {
-            // This need to be fixed so that this either sends the exception status or
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error: "+ e.getMessage()).build();
+            warehouseService.addNewProduct(newProduct);
+        } catch (Exception e){
+            throw new InternalServerErrorException();
         }
-        return Response.ok(response, MediaType.APPLICATION_JSON).build();
+        return Response.status(Response.Status.CREATED).entity(response).type(MediaType.APPLICATION_JSON).build();
     }
 
 }
