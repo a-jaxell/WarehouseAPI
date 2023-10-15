@@ -38,6 +38,16 @@
       <scope>provided</scope>
     </dependency>
       <dependency>
+          <groupId>jakarta.validation</groupId>
+          <artifactId>jakarta.validation-api</artifactId>
+          <version>3.0.2</version>
+      </dependency>
+      <dependency>
+          <groupId>org.hibernate.validator</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>8.0.1.Final</version>
+      </dependency>
+      <dependency>
           <groupId>org.jboss.resteasy</groupId>
           <artifactId>resteasy-core</artifactId>
           <version>6.2.4.Final</version>
