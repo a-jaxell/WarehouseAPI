@@ -1,15 +1,25 @@
 package com.warehouse.entities;
 
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 public class Product {
+    @NotNull
     private final UUID id;
+
+    @PastOrPresent
     private final LocalDateTime dateCreated;
+    @Max(10)
+    @PositiveOrZero
     private int rating;
+    @NotBlank
     private String name;
+    @NotNull
     private ProductCategory category;
+    @FutureOrPresent
     private LocalDateTime dateLastModified;
 
 

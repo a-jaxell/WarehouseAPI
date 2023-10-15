@@ -4,6 +4,7 @@ import com.warehouse.entities.Product;
 import com.warehouse.entities.ProductCategory;
 import com.warehouse.entities.ProductRecord;
 import com.warehouseapi.service.WarehouseService;
+import jakarta.validation.Valid;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -37,7 +38,7 @@ public class Warehouse implements WarehouseService {
         storage.add(productCopy);
     }
 
-    public ProductRecord addNewProduct(Product product) {
+    public ProductRecord addNewProduct(@Valid Product product) {
         Product productCopy = new Product(product);
         storage.add(productCopy);
         return ProductRecord.returnRecord(productCopy);
