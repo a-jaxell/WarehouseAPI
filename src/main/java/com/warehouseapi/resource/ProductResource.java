@@ -29,43 +29,18 @@ public class ProductResource {
         List<ProductRecord> result;
 
         result = warehouseService.getProducts();
-        if(result.isEmpty()){
+        if(result == null || result.isEmpty()){
             throw new NotFoundException("No products available");
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
-    @GET
-    @Path("/category/{category}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getProductsInCategory(@PathParam("category") String category) {
-        List<ProductRecord> result;
-
-        result = (List<ProductRecord>) warehouseService.getProductsPerCategory(category);
-        if(result.isEmpty()){
-            throw new NotFoundException("Unable to find any matching products");
-        }
-
-        return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
-    }
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getProductFromId(@PathParam("id") String id) {
-        Optional<ProductRecord> result;
-            result = warehouseService.getProduct(UUID.fromString(id));
-        if(result.isEmpty()){
-            throw new NotFoundException("Did not find any matching products");
-        }
-        return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
-    }
     @POST
-    @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     public  Response addNewProduct(
-                @Context UriInfo uri,
-                @QueryParam("name") String name,
-                @QueryParam("productCategory") String productCategory,
-                @QueryParam("rating") int rating){
+            @Context UriInfo uri,
+            @QueryParam("name") String name,
+            @QueryParam("productCategory") String productCategory,
+            @QueryParam("rating") int rating){
 
         ProductRecord response;
         if(name == null || name.isEmpty()){
@@ -82,14 +57,37 @@ public class ProductResource {
                             .build()
             );
         }
-        Product newProduct = new Product(name, Enum.valueOf(ProductCategory.class, productCategory.toUpperCase()), rating);
-        response = ProductRecord.returnRecord(newProduct);
         try{
+            Product newProduct = new Product(name, Enum.valueOf(ProductCategory.class, productCategory.toUpperCase()), rating);
             warehouseService.addNewProduct(newProduct);
+            response = ProductRecord.returnRecord(newProduct);
         } catch (Exception e){
             throw new InternalServerErrorException();
         }
         return Response.status(Response.Status.CREATED).entity(response).type(MediaType.APPLICATION_JSON).build();
     }
+    @GET
+    @Path("/category/{category}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProductsInCategory(@PathParam("category") String category) {
+        List<ProductRecord> result;
 
+        result = (List<ProductRecord>) warehouseService.getProductsPerCategory(category);
+        if(result.isEmpty()){
+            throw new NotFoundException("Not found");
+        }
+
+        return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
+    }
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProductFromId(@PathParam("id") String id) {
+        Optional<ProductRecord> result;
+            result = warehouseService.getProduct(UUID.fromString(id));
+        if(result.isEmpty()){
+            throw new NotFoundException();
+        }
+        return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
+    }
 }
