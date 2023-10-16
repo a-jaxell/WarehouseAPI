@@ -15,6 +15,9 @@ import jakarta.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @Path("/products")
 @LogMethodCalls
@@ -67,14 +70,26 @@ public class ProductResource {
         return Response.status(Response.Status.CREATED).entity(response).type(MediaType.APPLICATION_JSON).build();
     }
     @GET
+    @Path("/category")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCategories() {
+        List result;
+        try{
+            result = stream(ProductCategory.values()).collect(Collectors.toList());
+        } catch (Exception e){
+            throw new NotFoundException(e);
+        }
+        return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
+    }
+    @GET
     @Path("/category/{category}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductsInCategory(@PathParam("category") String category) {
         List<ProductRecord> result;
 
         result = (List<ProductRecord>) warehouseService.getProductsPerCategory(category);
-        if(result.isEmpty()){
-            throw new NotFoundException("Not found");
+        if(result == null || result.isEmpty()){
+            throw new NotFoundException("There is no such category");
         }
 
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
