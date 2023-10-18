@@ -21,13 +21,14 @@ import static java.util.Arrays.stream;
 
 @Path("/products")
 @LogMethodCalls
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class ProductResource {
     private WarehouseService warehouseService;
     public ProductResource(){}
     @Inject
     public ProductResource(WarehouseService warehouseService){ this.warehouseService = warehouseService; }
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts() {
         List<ProductRecord> result;
 
@@ -38,7 +39,6 @@ public class ProductResource {
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
     public  Response addNewProduct(
             @Context UriInfo uri,
             @QueryParam("name") String name,
@@ -71,7 +71,6 @@ public class ProductResource {
     }
     @GET
     @Path("/category")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getCategories() {
         List result;
         try{
@@ -83,7 +82,6 @@ public class ProductResource {
     }
     @GET
     @Path("/category/{category}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getProductsInCategory(@PathParam("category") String category) {
         List<ProductRecord> result;
 
@@ -96,11 +94,10 @@ public class ProductResource {
     }
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getProductFromId(@PathParam("id") String id) {
         Optional<ProductRecord> result;
             result = warehouseService.getProduct(UUID.fromString(id));
-        if(result.isEmpty()){
+        if(id == null || id.isEmpty()){
             throw new NotFoundException();
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
