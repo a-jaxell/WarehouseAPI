@@ -1,8 +1,7 @@
 package com.warehouseapi.resource;
 
-import com.warehouse.entities.Product;
-import com.warehouse.entities.ProductCategory;
-import com.warehouse.entities.ProductRecord;
+import com.warehouseapi.entity.Product;
+import com.warehouseapi.entity.ProductRecord;
 import com.warehouseapi.exception.CategoryNotFoundException;
 import com.warehouseapi.exception.ProductNotFoundException;
 import com.warehouseapi.interceptor.LogMethodCalls;
@@ -16,9 +15,6 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
-import static java.util.Arrays.stream;
 
 @Path("/products")
 @LogMethodCalls
@@ -44,9 +40,8 @@ public class ProductResource {
 
         ProductRecord response;
         try{
-            Product newProduct = new Product(product);
-            warehouseService.addNewProduct(newProduct);
-            response = ProductRecord.returnRecord(newProduct);
+            warehouseService.addNewProduct(product);
+            response = ProductRecord.returnRecord(product);
         } catch (Exception e){
             throw new InternalServerErrorException();
         }
@@ -55,10 +50,8 @@ public class ProductResource {
     @GET
     @Path("/category")
     public Response getCategories() {
-        List result;
-        try{
-            result = stream(ProductCategory.values()).collect(Collectors.toList());
-        } catch (Exception e){
+        List<String> result = warehouseService.getCategories();
+        if(result == null || result.isEmpty()){
             throw new CategoryNotFoundException();
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();

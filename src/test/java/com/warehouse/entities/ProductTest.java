@@ -1,10 +1,11 @@
 package com.warehouse.entities;
 
+import com.warehouseapi.entity.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.warehouse.entities.ProductCategory.CHEF_KNIVES;
+import static com.warehouseapi.entity.ProductCategory.CHEF_KNIVES;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

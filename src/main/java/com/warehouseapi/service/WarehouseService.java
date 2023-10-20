@@ -1,8 +1,8 @@
 package com.warehouseapi.service;
 
-import com.warehouse.entities.Product;
-import com.warehouse.entities.ProductCategory;
-import com.warehouse.entities.ProductRecord;
+import com.warehouseapi.entity.Product;
+import com.warehouseapi.entity.ProductCategory;
+import com.warehouseapi.entity.ProductRecord;
 
 import java.util.List;
 import java.util.Map;
@@ -14,4 +14,5 @@ public interface WarehouseService {
     Optional<ProductRecord> getProduct(UUID id);
     Map<ProductCategory, Long> getProductsPerCategory(String category);
     ProductRecord addNewProduct(Product product);
+    List<String> getCategories();
 }

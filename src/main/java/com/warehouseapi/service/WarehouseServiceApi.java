@@ -1,8 +1,8 @@
 package com.warehouseapi.service;
 
-import com.warehouse.entities.Product;
-import com.warehouse.entities.ProductCategory;
-import com.warehouse.entities.ProductRecord;
+import com.warehouseapi.entity.Product;
+import com.warehouseapi.entity.ProductCategory;
+import com.warehouseapi.entity.ProductRecord;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
@@ -30,6 +30,11 @@ public class WarehouseServiceApi implements WarehouseService {
 
     @Override
     public ProductRecord addNewProduct(Product product) {
+        return null;
+    }
+
+    @Override
+    public List<String> getCategories() {
         return null;
     }
 }

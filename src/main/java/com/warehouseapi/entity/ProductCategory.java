@@ -1,4 +1,4 @@
-package com.warehouse.entities;
+package com.warehouseapi.entity;
 
 public enum ProductCategory {
     CHEF_KNIVES("chef_knives"),

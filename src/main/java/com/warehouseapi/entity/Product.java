@@ -1,4 +1,4 @@
-package com.warehouse.entities;
+package com.warehouseapi.entity;
 
 import com.warehouseapi.validation.CategoryValidation;
 import com.warehouseapi.validation.RatingValidation;

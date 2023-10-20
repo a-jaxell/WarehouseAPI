@@ -1,9 +1,8 @@
-package com.warehouse.service;
+package com.warehouseapi.service;
 
-import com.warehouse.entities.Product;
-import com.warehouse.entities.ProductCategory;
-import com.warehouse.entities.ProductRecord;
-import com.warehouseapi.service.WarehouseService;
+import com.warehouseapi.entity.Product;
+import com.warehouseapi.entity.ProductCategory;
+import com.warehouseapi.entity.ProductRecord;
 import jakarta.validation.Valid;
 
 import java.time.LocalDateTime;
@@ -12,6 +11,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 public class Warehouse implements WarehouseService {
 
@@ -143,5 +144,10 @@ public class Warehouse implements WarehouseService {
                         productRecord.dateCreated().getYear() == date.getYear())
                 .sorted(Comparator.comparing(ProductRecord::dateCreated).reversed())
                 .collect(Collectors.toList());
+    }
+    public List<String> getCategories(){
+        return stream(ProductCategory.values())
+                    .map(ProductCategory::toString)
+                    .collect(Collectors.toList());
     }
 }

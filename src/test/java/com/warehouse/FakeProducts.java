@@ -1,7 +1,7 @@
 package com.warehouse;
 
-import com.warehouse.entities.Product;
-import com.warehouse.entities.ProductCategory;
+import com.warehouseapi.entity.Product;
+import com.warehouseapi.entity.ProductCategory;
 
 import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;

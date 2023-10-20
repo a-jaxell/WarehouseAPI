@@ -1,5 +1,8 @@
 package com.warehouse.entities;
 
+import com.warehouseapi.entity.Product;
+import com.warehouseapi.entity.ProductCategory;
+import com.warehouseapi.entity.ProductRecord;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

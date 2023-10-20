@@ -1,9 +1,10 @@
 package com.warehouse.service;
 
 import com.warehouse.FakeProducts;
-import com.warehouse.entities.Product;
-import com.warehouse.entities.ProductCategory;
-import com.warehouse.entities.ProductRecord;
+import com.warehouseapi.entity.Product;
+import com.warehouseapi.entity.ProductCategory;
+import com.warehouseapi.entity.ProductRecord;
+import com.warehouseapi.service.Warehouse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
