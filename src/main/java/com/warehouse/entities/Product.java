@@ -1,6 +1,9 @@
 package com.warehouse.entities;
 
-import jakarta.validation.constraints.*;
+import com.warehouseapi.validation.CategoryValidation;
+import com.warehouseapi.validation.RatingValidation;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -10,18 +13,14 @@ public class Product {
     @NotNull
     private final UUID id;
 
-    @PastOrPresent
     private final LocalDateTime dateCreated;
-    @Max(10)
-    @PositiveOrZero
+    @RatingValidation
     private int rating;
-    @NotBlank
+    @NotEmpty
     private String name;
-    @NotNull
+    @CategoryValidation
     private ProductCategory category;
-    @FutureOrPresent
     private LocalDateTime dateLastModified;
-
 
     public Product(String name, ProductCategory category, int rating) {
         LocalDateTime date = LocalDateTime.now();
@@ -60,6 +59,15 @@ public class Product {
         this.category = product.category;
         this.dateCreated = product.dateCreated;
         this.dateLastModified = product.dateCreated;
+    }
+
+    public Product() {
+        this.id = UUID.randomUUID();
+        this.dateCreated = LocalDateTime.now();
+        this.rating = 0;
+        this.name = "";
+        this.category = ProductCategory.UNDEFINED;
+        this.dateLastModified = LocalDateTime.now();
     }
 
     public String getName() {

@@ -6,7 +6,8 @@ public enum ProductCategory {
     TONGS("tongs"),
     SPATULAS("spatulas"),
     MANDOLINS("mandolins"),
-    UTENSILS("utensils");
+    UTENSILS("utensils"),
+    UNDEFINED("undefined");
 
     private String value;
 

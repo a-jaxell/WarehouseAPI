@@ -1,5 +1,6 @@
 package com.warehouseapi.validation;
 
+import com.warehouseapi.entity.ResponseError;
 import com.warehouseapi.resource.ProductResource;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -9,7 +10,7 @@ import jakarta.ws.rs.ext.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Set;
+import java.util.*;
 
 @Provider
 public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
@@ -17,10 +18,15 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
     @Override
     public Response toResponse(ConstraintViolationException e) {
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        List<ResponseError> responseErrors = new ArrayList<>();
 
         for(ConstraintViolation<?> violation : violations){
-            logger.error("TEST");
+            String message = violation.getMessage();
+            responseErrors.add(new ResponseError(message));
+            logger.error(violation.getMessage());
         }
-        return Response.status(Response.Status.BAD_REQUEST).build();
+        Map<String, List<ResponseError>> response = new HashMap<>();
+        response.put("errors",responseErrors);
+        return Response.status(Response.Status.BAD_REQUEST).entity(response).build();
     }
 }

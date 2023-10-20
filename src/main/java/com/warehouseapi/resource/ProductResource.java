@@ -6,11 +6,10 @@ import com.warehouse.entities.ProductRecord;
 import com.warehouseapi.interceptor.LogMethodCalls;
 import com.warehouseapi.service.WarehouseService;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.UriInfo;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,29 +38,11 @@ public class ProductResource {
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
     @POST
-    public  Response addNewProduct(
-            @Context UriInfo uri,
-            @QueryParam("name") String name,
-            @QueryParam("productCategory") String productCategory,
-            @QueryParam("rating") int rating){
+    public  Response addNewProduct(@Valid Product product){
 
         ProductRecord response;
-        if(name == null || name.isEmpty()){
-            throw new BadRequestException(
-                    Response.status(Response.Status.BAD_REQUEST)
-                            .entity("name parameter is required")
-                            .build()
-            );
-        }
-        if(productCategory == null || productCategory.isEmpty()){
-            throw new BadRequestException(
-                    Response.status(Response.Status.BAD_REQUEST)
-                            .entity("productCategory is required ")
-                            .build()
-            );
-        }
         try{
-            Product newProduct = new Product(name, Enum.valueOf(ProductCategory.class, productCategory.toUpperCase()), rating);
+            Product newProduct = new Product(product);
             warehouseService.addNewProduct(newProduct);
             response = ProductRecord.returnRecord(newProduct);
         } catch (Exception e){
