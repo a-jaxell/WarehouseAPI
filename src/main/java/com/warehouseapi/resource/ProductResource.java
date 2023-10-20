@@ -3,6 +3,8 @@ package com.warehouseapi.resource;
 import com.warehouse.entities.Product;
 import com.warehouse.entities.ProductCategory;
 import com.warehouse.entities.ProductRecord;
+import com.warehouseapi.exception.CategoryNotFoundException;
+import com.warehouseapi.exception.ProductNotFoundException;
 import com.warehouseapi.interceptor.LogMethodCalls;
 import com.warehouseapi.service.WarehouseService;
 import jakarta.inject.Inject;
@@ -33,7 +35,7 @@ public class ProductResource {
 
         result = warehouseService.getProducts();
         if(result == null || result.isEmpty()){
-            throw new NotFoundException("No products available");
+            throw new ProductNotFoundException();
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
@@ -57,7 +59,7 @@ public class ProductResource {
         try{
             result = stream(ProductCategory.values()).collect(Collectors.toList());
         } catch (Exception e){
-            throw new NotFoundException(e);
+            throw new CategoryNotFoundException();
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }
@@ -68,7 +70,7 @@ public class ProductResource {
 
         result = (List<ProductRecord>) warehouseService.getProductsPerCategory(category);
         if(result == null || result.isEmpty()){
-            throw new NotFoundException("There is no such category");
+            throw new CategoryNotFoundException();
         }
 
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
@@ -78,8 +80,8 @@ public class ProductResource {
     public Response getProductFromId(@PathParam("id") String id) {
         Optional<ProductRecord> result;
             result = warehouseService.getProduct(UUID.fromString(id));
-        if(id == null || id.isEmpty()){
-            throw new NotFoundException();
+        if(result.isEmpty()){
+            throw new ProductNotFoundException();
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }

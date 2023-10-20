@@ -1,23 +1,19 @@
 package com.warehouseapi.validation;
 
+import com.warehouse.entities.ProductCategory;
+import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import jakarta.validation.ReportAsSingleViolation;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraintvalidation.SupportedValidationTarget;
-import jakarta.validation.constraintvalidation.ValidationTarget;
+import jakarta.validation.constraints.NotNull;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
-@SupportedValidationTarget({ValidationTarget.ANNOTATED_ELEMENT})
+@Constraint(validatedBy = CategoryConstraint.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@NotBlank
-@ReportAsSingleViolation
+@NotNull
 public @interface CategoryValidation {
-    String message() default ("Category has to be ");
+    Class<? extends Enum<?>>[] category() default ProductCategory.class;
+    String message() default ("Invalid product category");
     Class<?> [] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
