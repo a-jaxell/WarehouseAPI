@@ -58,12 +58,12 @@ public class ProductResource {
     }
     @GET
     @Path("/category/{category}")
-    public Response getProductsInCategory(@PathParam("category") String category) {
+    public Response getProductsInCategory(@Valid @PathParam("category") String category) {
         List<ProductRecord> result;
 
         result = (List<ProductRecord>) warehouseService.getProductsPerCategory(category);
         if(result == null || result.isEmpty()){
-            throw new CategoryNotFoundException();
+            throw new ProductNotFoundException();
         }
 
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();

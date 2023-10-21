@@ -1,8 +1,8 @@
 package com.warehouseapi.entity;
 
 import com.warehouseapi.validation.CategoryValidation;
+import com.warehouseapi.validation.NameValidation;
 import com.warehouseapi.validation.RatingValidation;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ public class Product {
     private final LocalDateTime dateCreated;
     @RatingValidation
     private int rating;
-    @NotEmpty
+    @NameValidation
     private String name;
     @CategoryValidation
     private ProductCategory category;

@@ -3,6 +3,7 @@ package com.warehouseapi.service;
 import com.warehouseapi.entity.Product;
 import com.warehouseapi.entity.ProductCategory;
 import com.warehouseapi.entity.ProductRecord;
+import com.warehouseapi.service.WarehouseService;
 import jakarta.validation.Valid;
 
 import java.time.LocalDateTime;
