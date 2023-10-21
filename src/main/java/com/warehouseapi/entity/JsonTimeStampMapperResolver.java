@@ -1,6 +1,7 @@
 package com.warehouseapi.entity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.ws.rs.ext.ContextResolver;
 import jakarta.ws.rs.ext.Provider;
@@ -13,6 +14,7 @@ public class JsonTimeStampMapperResolver implements ContextResolver<ObjectMapper
     public JsonTimeStampMapperResolver(){
         this.mapper = new ObjectMapper();
         this.mapper.registerModule(new JavaTimeModule());
+        this.mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
     @Override
     public ObjectMapper getContext(Class<?> aClass) {

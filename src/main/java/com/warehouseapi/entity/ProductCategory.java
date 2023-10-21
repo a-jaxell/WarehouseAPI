@@ -1,5 +1,6 @@
 package com.warehouseapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ProductCategory {
@@ -14,6 +15,15 @@ public enum ProductCategory {
     @JsonValue
     private String value;
 
+    @JsonCreator
+    public  static ProductCategory fromValue(String value){
+        for (ProductCategory category:values()){
+            if(category.value.equalsIgnoreCase(value)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("Invalid category: "+ value);
+    }
     private ProductCategory(String value){
         this.value = value;
     }
