@@ -3,14 +3,12 @@ package com.warehouseapi.entity;
 import com.warehouseapi.validation.CategoryValidation;
 import com.warehouseapi.validation.NameValidation;
 import com.warehouseapi.validation.RatingValidation;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 public class Product {
-    @NotNull
     private final UUID id;
 
     private final LocalDateTime dateCreated;
