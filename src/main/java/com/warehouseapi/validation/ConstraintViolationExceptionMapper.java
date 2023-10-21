@@ -22,8 +22,9 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 
         for(ConstraintViolation<?> violation : violations){
             String message = violation.getMessage();
-            responseErrors.add(new ResponseError(message));
-            logger.error(violation.getMessage());
+            String field = violation.getPropertyPath().toString();
+            responseErrors.add(new ResponseError(message, field));
+            logger.error("Validation error for: {} - {}", field, message);
         }
         Map<String, List<ResponseError>> response = new HashMap<>();
         response.put("errors",responseErrors);

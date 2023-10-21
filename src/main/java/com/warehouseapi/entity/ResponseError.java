@@ -1,9 +1,5 @@
 package com.warehouseapi.entity;
 
-public class ResponseError {
-    String message;
+public record ResponseError(String message, String field) {
 
-    public ResponseError(String message){
-        this.message = message;
-    }
 }
