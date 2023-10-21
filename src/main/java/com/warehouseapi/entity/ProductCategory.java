@@ -1,5 +1,7 @@
 package com.warehouseapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum ProductCategory {
     CHEF_KNIVES("chef_knives"),
     WHISKS("whisks"),
@@ -9,6 +11,7 @@ public enum ProductCategory {
     UTENSILS("utensils"),
     UNDEFINED("undefined");
 
+    @JsonValue
     private String value;
 
     private ProductCategory(String value){
