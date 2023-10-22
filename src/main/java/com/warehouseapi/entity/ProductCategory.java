@@ -2,6 +2,7 @@ package com.warehouseapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.warehouseapi.exception.CategoryNotFoundException;
 
 public enum ProductCategory {
     CHEF_KNIVES("chef_knives"),
@@ -22,7 +23,7 @@ public enum ProductCategory {
                 return category;
             }
         }
-        throw new IllegalArgumentException("Invalid category: "+ value);
+        throw new CategoryNotFoundException();
     }
     private ProductCategory(String value){
         this.value = value;

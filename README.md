@@ -13,5 +13,5 @@
 Query params for filtering (`filter=...`) `A`, `B`, `C`
 
 ---
-#### `/products/add`
+#### `/products`
 `POST` Adds new product with supplied query params `(name, price, quantity)`

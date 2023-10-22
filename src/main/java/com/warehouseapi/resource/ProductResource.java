@@ -4,6 +4,7 @@ import com.warehouseapi.entity.Product;
 import com.warehouseapi.entity.ProductRecord;
 import com.warehouseapi.exception.CategoryNotFoundException;
 import com.warehouseapi.exception.ProductNotFoundException;
+import com.warehouseapi.exception.ProductsNotFoundException;
 import com.warehouseapi.interceptor.LogMethodCalls;
 import com.warehouseapi.service.WarehouseService;
 import jakarta.inject.Inject;
@@ -31,7 +32,7 @@ public class ProductResource {
 
         result = warehouseService.getProducts();
         if(result == null || result.isEmpty()){
-            throw new ProductNotFoundException();
+            throw new ProductsNotFoundException();
         }
         return Response.ok(result, MediaType.APPLICATION_JSON_TYPE).build();
     }

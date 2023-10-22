@@ -3,6 +3,7 @@ package com.warehouseapi.validation;
 import com.warehouseapi.entity.ProductCategory;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import jakarta.validation.constraints.NotNull;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,6 +12,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = CategoryConstraint.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
+@NotNull
 public @interface CategoryValidation {
     Class<? extends Enum<?>>[] category() default ProductCategory.class;
     String message() default ("Invalid product category");
